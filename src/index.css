@@ -50,3 +50,17 @@ ul {
 .item button:hover {
   background-color: #e60000;
 }
+
+/* Footer.css */
+
+.footer {
+  background-color: #1f2937; /* dark gray */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
