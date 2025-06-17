@@ -1,18 +1,10 @@
 import React from 'react'
-
+import LineItem from './LineItem'
 const ItemList = ({items,handleCheck,handleDelete}) => {
   return (
       <ul>
           {items.map((item) => (
-              <li className='item' key={item.id}>
-                   <input 
-                   type='checkbox'
-                   checked={item.isPurchased}
-                   onChange={()=>handleCheck(item.id)}
-                    />
-                    <label onDoubleClick={()=>handleCheck(item.id)} htmlFor="">{item.name}</label>
-                    <button onClick={()=>handleDelete(item.id)}>Delete</button>
-              </li>
+           <LineItem item={item} key={item.id} handleCheck={handleCheck} handleDelete={handleDelete}/>
           ))}
        </ul>
   )
