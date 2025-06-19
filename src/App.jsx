@@ -7,58 +7,40 @@ import Header from './Header'
 import React from 'react';
 
 function App() {
-    const [items, setItems] = React.useState([
-  {
-    id: 1,
-    name: 'Milk',
-    quantity: 2,
-    isPurchased: false
-  },
-  {
-    id: 2,
-    name: 'Bread',
-    quantity: 1,
-    isPurchased: true
-  },
-  {
-    id: 3,
-    name: 'Eggs',
-    quantity: 12,
-    isPurchased: false
-  }
-
-  
-] );
+    const [items, setItems] = React.useState(JSON.parse(localStorage.getItem('shopping-items')) || []);
 
 const [addItem, setAddItem] = React.useState('');
+const [newItem , setNewItem] = React.useState('');
 
 
 const handleCheck =(id)=>{
     const list = items.map((item) => item.id === id ? {...item, isPurchased: !item.isPurchased} : item);
     setItems(list);
+    localStorage.setItem('shopping-items', JSON.stringify(list));
 }
 
-const addItemHandler = (e)=>{
 
-}
 
 const handleDelete = (id)=>{
     const list = items.filter((item) => item.id !== id);
     setItems(list);
+    localStorage.setItem('shopping-items', JSON.stringify(list));
 }
 
 const addItemNew = (item)=>{
-   const id = items.length ? items[items.length - 1].id + 1 : 1;
-   const myNewItem = {id, checked: false, item};
-   const list = [...items, myNewItem];
-   setItems(list);
+  const id = items.length ? items[items.length - 1].id + 1 : 1;
+  const myNewItem = {id,isPurchased: false,item};
+  const list = [...items, myNewItem];
+  setItems(list);
+  localStorage.setItem('shopping-items', JSON.stringify(list));
 }
 
 const handleaddItem = (e)=>{
   e.preventDefault();
   if(!addItem) return;
-
   setAddItem('');
+
+  addItemNew(addItem);
 
   //add item logic 
 
